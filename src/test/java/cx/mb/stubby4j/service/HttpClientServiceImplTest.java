@@ -36,7 +36,7 @@ public class HttpClientServiceImplTest {
 
     @Test
     public void get() throws Exception {
-        assertThat(client.simpleGet(), is("{ }"));
+        assertThat(client.simpleGet(), is("{}"));
     }
 
 }
