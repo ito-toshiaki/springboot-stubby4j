@@ -1,1 +1,1 @@
-# springboot-stubby4j
+# Stubby4j with Spring Boot.
