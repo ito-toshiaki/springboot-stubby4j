@@ -22,7 +22,7 @@ public class HttpClientServiceImplTest {
     public void setUp() throws Exception {
 
         stubbyClient = new StubbyClient();
-        stubbyClient.startJetty(8888,"src/test/java/cx/mb/stubby4j/service/test.yaml");
+        stubbyClient.startJetty(9999,"src/test/java/cx/mb/stubby4j/service/test.yaml");
 
     }
 
@@ -36,7 +36,7 @@ public class HttpClientServiceImplTest {
 
     @Test
     public void get() throws Exception {
-        assertThat(client.get(), is("{}"));
+        assertThat(client.simpleGet(), is("{}"));
     }
 
 }

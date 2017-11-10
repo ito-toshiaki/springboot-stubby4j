@@ -8,19 +8,22 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+/**
+ * Http Client.
+ */
 @Service
 public class HttpClientServiceImpl implements HttpClientService {
 
    /**
     * URL
     */
-   @Value ("${url}")
+   @Value ("${url.simple.get}")
    private String url;
 
    OkHttpClient client = new OkHttpClient();
 
    @Override
-   public String get() throws IOException {
+   public String simpleGet() throws IOException {
 
       Request request = new Request.Builder()
               .url(url)
