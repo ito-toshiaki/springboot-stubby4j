@@ -7,9 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -33,13 +36,23 @@ public class HttpClientServiceImplTest {
         stubbyClient.stopJetty();
     }
 
-    @Autowired
-    private HttpClientService client;
+    @Value("${url.simple.get}")
+    private String url200;
 
     @Test
-    public void get() throws Exception {
-        Response response = client.simpleGet();
+    public void get200() throws Exception {
+
+        HttpClientService service = new HttpClientServiceImpl(url200);
+        Response response = service.simpleGet();
         assertThat(response.code(), is(HttpStatus.OK.value()));
         assertThat(response.body().string(), is("{}"));
+    }
+
+    @Test
+    public void getBut404() throws IOException {
+
+        HttpClientService service = new HttpClientServiceImpl(url200 + "/hoge");
+        Response response = service.simpleGet();
+        assertThat(response.code(), is(HttpStatus.NOT_FOUND.value()));
     }
 }
