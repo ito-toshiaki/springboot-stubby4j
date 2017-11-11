@@ -1,12 +1,14 @@
 package cx.mb.stubby4j.service;
 
 import io.github.azagniotov.stubby4j.client.StubbyClient;
+import okhttp3.Response;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -36,7 +38,8 @@ public class HttpClientServiceImplTest {
 
     @Test
     public void get() throws Exception {
-        assertThat(client.simpleGet(), is("{}"));
+        Response response = client.simpleGet();
+        assertThat(response.code(), is(HttpStatus.OK.value()));
+        assertThat(response.body().string(), is("{}"));
     }
-
 }

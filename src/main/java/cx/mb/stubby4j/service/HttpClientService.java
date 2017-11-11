@@ -1,5 +1,7 @@
 package cx.mb.stubby4j.service;
 
+import okhttp3.Response;
+
 import java.io.IOException;
 
 /**
@@ -12,5 +14,5 @@ public interface HttpClientService {
      * @return got content.
      * @throws IOException Exception
      */
-    String simpleGet() throws IOException;
+    Response simpleGet() throws IOException;
 }
