@@ -45,7 +45,7 @@ public class HttpClientServiceImplTest {
         HttpClientService service = new HttpClientServiceImpl(url200);
         Response response = service.simpleGet();
         assertThat(response.code(), is(HttpStatus.OK.value()));
-        assertThat(response.body().string(), is("{ }"));
+        assertThat(response.body().string(), is("{}"));
     }
 
     @Test
